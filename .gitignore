@@ -222,3 +222,6 @@ __marimo__/
 profiles.yml    # dbt profiles live outside repo anyway, but belt-and-suspenders
 dbt_packages/
 logs/
+
+# pycharm
+.idea

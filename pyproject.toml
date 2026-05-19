@@ -1,0 +1,16 @@
+[project]
+name = "claims-intelligence"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dagster>=1.13.5",
+    "dagster-dbt>=0.29.5",
+    "dagster-webserver>=1.13.5",
+    "dbt-bigquery>=1.11.1",
+    "pandas>=2.3.3",
+    "polars>=1.40.1",
+    "pyarrow>=24.0.0",
+    "python-dotenv>=1.2.2",
+]

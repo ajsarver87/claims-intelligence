@@ -13,4 +13,21 @@ dependencies = [
     "polars>=1.40.1",
     "pyarrow>=24.0.0",
     "python-dotenv>=1.2.2",
+    "requests>=2.34.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.14",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  # pycodestyle, pyflakes, isort
+
+[tool.ruff.format]
+# Black-compatible formatting
+quote-style = "double"

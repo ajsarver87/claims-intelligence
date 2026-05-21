@@ -225,3 +225,6 @@ logs/
 
 # pycharm
 .idea/
+
+# claude
+.claude/

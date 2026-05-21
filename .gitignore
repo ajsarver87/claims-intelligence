@@ -228,3 +228,4 @@ logs/
 
 # claude
 .claude/
+CLAUDE.md

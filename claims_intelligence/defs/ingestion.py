@@ -1,0 +1,2 @@
+from claims_intelligence.ingestion.ingest_part_d import part_d_raw
+from claims_intelligence.ingestion.ingest_part_d_bq import part_d_bq_raw

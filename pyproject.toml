@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "dagster>=1.13.5",
     "dagster-dbt>=0.29.5",
+    "dagster-gcp>=0.29.5",
     "dagster-webserver>=1.13.5",
     "dbt-bigquery>=1.11.1",
     "pandas>=2.3.3",
@@ -18,6 +19,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "dagster-dg-cli>=1.13.5",
     "ruff>=0.15.14",
 ]
 
@@ -31,3 +33,16 @@ select = ["E", "F", "I"]  # pycodestyle, pyflakes, isort
 [tool.ruff.format]
 # Black-compatible formatting
 quote-style = "double"
+
+[tool.dg]
+directory_type = "project"
+
+[tool.dg.project]
+root_module = "claims_intelligence"
+code_location_target_module = "claims_intelligence.definitions"
+
+[project.entry-points]
+"dagster_dg_cli.registry_modules" = { claims_intelligence = "claims_intelligence.components"}
+
+[tool.setuptools.packages.find]
+include = ["claims_intelligence*"]

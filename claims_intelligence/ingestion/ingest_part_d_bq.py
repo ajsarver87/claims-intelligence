@@ -1,6 +1,6 @@
 import os
 
-from dagster import MaterializeResult, asset
+from dagster import MaterializeResult, asset, AssetKey
 from dagster_gcp import BigQueryResource
 from google.cloud.bigquery import (
     LoadJobConfig,
@@ -18,7 +18,7 @@ from claims_intelligence.ingestion.cms_config import (
 )
 
 
-@asset(partitions_def=year_partitions)
+@asset(partitions_def=year_partitions, key=AssetKey(["part_d_raw", "raw_data"]))
 def part_d_bq_raw(context, bigquery: BigQueryResource, part_d_raw: str):
     # Get Envs
     gcp_project_id = os.getenv("GCP_PROJECT")

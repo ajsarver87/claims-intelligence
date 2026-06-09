@@ -29,7 +29,7 @@ def part_d_bq_raw(context, bigquery: BigQueryResource, part_d_raw: str):
 
     # Set parameters
     year = int(context.partition_key)
-    staging_table_id = "staging_raw_data"
+    staging_table_id = f"staging_raw_data_{year}"
     final_raw_table = "raw_data"
 
     #   1. Get the Client

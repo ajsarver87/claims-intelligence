@@ -8,13 +8,13 @@ Ingest the Medicare Part D Prescriber data published by CMS and create a Gen AI 
 ## Tech Stack
 - Orchestration: Dagster
 - Storage & Compute: Google Cloud Storage and Bigquery
-- Transformation: dbt (WIP)
+- Transformation: dbt
 - Environment: uv & python 3.13
 
 ## Current Progress
-Can ingest the data from CMS directly into a BigQuery raw layer.  So the core extract and load framework is working.  
+Pulled data from CMS and have the medallion architecture with a simple star scheam, complete with surrogate keys and freshness testing. 
 
-Still need to transform it via dbt.
+Need to add documentation to the data models via dbt and pull it into Bigquery.  Then add testing around the relationships to ensure integrity.
 
 ## Current Architecture
 ```
@@ -32,5 +32,15 @@ part_d_bq_raw (BigQuery)
 - Loads CSV from GCS into staging table
 - Inserts into raw layers with data_year column added
 - Cleans up Staging table automatically
-- raw table is partitioned by data_year                                                                                                                  
+- raw table is partitioned by data_year  
+    |
+    V
+part_d_silver
+- cleaned up names and data types from raw data
+- added freshness monitoring
+- added uniqueness test to primary key (data_year and prescriber NPI)  
+    |
+    V
+Gold Layer
+- One Fact Table and 2 Dimensions                                                                      
 ```                   

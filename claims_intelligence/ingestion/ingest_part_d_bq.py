@@ -36,7 +36,8 @@ def part_d_bq_raw(context, bigquery: BigQueryResource, part_d_raw: str):
     with bigquery.get_client() as bq_client:
         #   2. create final table if not exists
         final_schema = PART_D_STAGING_SCHEMA + [
-            SchemaField("data_year", "INT64", mode="REQUIRED")
+            SchemaField("data_year", "INT64", mode="REQUIRED"),
+            SchemaField("loaded_at", "TIMESTAMP", mode="REQUIRED"),
         ]
 
         table = Table(
@@ -80,7 +81,7 @@ def part_d_bq_raw(context, bigquery: BigQueryResource, part_d_raw: str):
         #   5. INSERT INTO final SELECT *, year AS data_year FROM staging
         insert_query = f"""
             INSERT INTO `{gcp_project_id}`.`{dataset_id}`.`{final_raw_table}`
-            SELECT *, {year} as data_year 
+            SELECT *, {year} as data_year, CURRENT_TIMESTAMP as loaded_at
             FROM `{gcp_project_id}`.`{dataset_id}`.`{staging_table_id}`
         """
 

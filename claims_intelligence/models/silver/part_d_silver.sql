@@ -95,6 +95,7 @@ select
     CAST(Bene_Dual_Cnt as INT64) as beneficiary_medicare_medicaid_entitlement_count,
     CAST(Bene_Ndual_Cnt as INT64) as beneficiary_medicare_only_count,
     Bene_Avg_Risk_Scre as average_hierarchical_condition_category_risk_score,
-    CAST(data_year as INT64) as data_year
+    CAST(data_year as INT64) as data_year,
+    loaded_at
 from
     {{  source('part_d_raw', 'raw_data') }}
